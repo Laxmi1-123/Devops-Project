@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'Maven-3.9'
-    }
-
     stages {
         stage('Checkout Code') {
             steps {
@@ -15,7 +11,11 @@ pipeline {
 
         stage('Build & Test') {
             steps {
-                bat 'mvn clean test'
+                script {
+                    def mvnHome = tool 'Maven-3.9'
+                    bat "${mvnHome}\\bin\\mvn -v"
+                    bat "${mvnHome}\\bin\\mvn clean test"
+                }
             }
         }
     }
