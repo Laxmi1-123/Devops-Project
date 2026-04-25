@@ -13,7 +13,6 @@ pipeline {
             steps {
                 script {
                     def mvnHome = tool 'Maven-3.9'
-                    bat "${mvnHome}\\bin\\mvn -v"
                     bat "${mvnHome}\\bin\\mvn clean test"
                 }
             }
