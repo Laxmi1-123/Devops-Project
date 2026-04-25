@@ -2,13 +2,13 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven'
+        maven 'Maven-3.9'
     }
 
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'TaskServiceDeleteTest', 
+                git branch: 'delete-module', 
                     url: 'https://github.com/Laxmi1-123/Devops-Project.git'
             }
         }
