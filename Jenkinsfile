@@ -1,21 +1,27 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'Maven-3.9'
-    }
-
     stages {
-        stage('Build') {
+        stage('Checkout Code') {
             steps {
-                bat 'mvn clean compile'
+                git branch: 'status-module',
+                    url: 'https://github.com/Laxmi1-123/Devops-Project.git'
             }
         }
 
-        stage('Test') {
+        stage('Build & Test') {
             steps {
-                bat 'mvn test'
+                script {
+                    def mvnHome = tool 'Maven-3.9'
+                    bat "${mvnHome}\\bin\\mvn clean test"
+                }
             }
+        }
+    }
+
+    post {
+        always {
+            junit 'target/surefire-reports/*.xml'
         }
     }
 }
