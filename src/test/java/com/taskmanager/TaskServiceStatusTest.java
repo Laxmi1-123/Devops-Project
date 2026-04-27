@@ -64,7 +64,7 @@ public class TaskServiceStatusTest {
     }
 
     @Test
-    void shouldReturnCompletedTasks() {
+    void shouldReturnCompletedTasksAfterMarkDone() {
 
         service.markDone(1);
 

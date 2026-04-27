@@ -1,3 +1,4 @@
+// src/main/java/com/taskmanager/Task.java
 package com.taskmanager;
 
 public class Task {
@@ -9,12 +10,12 @@ public class Task {
 
     public Task(int id, String title, int priority) {
 
-        if (title == null || title.isBlank()) {
-            throw new IllegalArgumentException("Title required");
-        }
-
         if (id <= 0) {
             throw new IllegalArgumentException("Invalid Task ID");
+        }
+
+        if (title == null || title.trim().isEmpty()) {
+            throw new IllegalArgumentException("Title required");
         }
 
         if (priority <= 0) {
@@ -43,8 +44,8 @@ public class Task {
         return priority;
     }
 
-    public void setTitle(String t) {
-        this.title = t;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void markDone() {

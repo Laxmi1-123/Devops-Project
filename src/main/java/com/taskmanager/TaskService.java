@@ -42,7 +42,7 @@ public class TaskService {
     // Update Title
     public boolean updateTitle(int id, String title) {
 
-        if (title == null || title.isBlank()) {
+        if (title == null || title.trim().isEmpty()) {
             throw new IllegalArgumentException("Title cannot be empty");
         }
 
@@ -86,7 +86,7 @@ public class TaskService {
         return true;
     }
 
-    // Search by Title
+    // Search Task by Title
     public List<Task> searchByTitle(String keyword) {
 
         List<Task> result = new ArrayList<>();
