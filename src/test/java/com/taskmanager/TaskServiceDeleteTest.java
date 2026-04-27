@@ -1,10 +1,13 @@
 package com.taskmanager;
 
-import org.junit.jupiter.api.*;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 class TaskServiceDeleteTest {
 
@@ -12,7 +15,7 @@ class TaskServiceDeleteTest {
     Map<Integer, Task> taskMap;
 
     @BeforeEach
-    void setup() {
+    public void setup() {
         taskMap = new HashMap<>();
 
         taskMap.put(1, new Task(1, "Test", 1));

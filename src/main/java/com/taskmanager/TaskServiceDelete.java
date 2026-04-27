@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class TaskServiceDelete {
 
-    private Map<Integer, Task> taskMap;
+    private final Map<Integer, Task> taskMap;
 
     public TaskServiceDelete(Map<Integer, Task> taskMap) {
         this.taskMap = taskMap;

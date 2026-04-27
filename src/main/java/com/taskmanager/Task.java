@@ -30,12 +30,12 @@ public class Task {
         if (priority == null)
             throw new IllegalArgumentException("Priority cannot be null");
 
-        switch (priority.toLowerCase()) {
-            case "low": return 1;
-            case "medium": return 3;
-            case "high": return 5;
-            default: throw new IllegalArgumentException("Invalid priority value");
-        }
+        return switch (priority.toLowerCase()) {
+            case "low" -> 1;
+            case "medium" -> 3;
+            case "high" -> 5;
+            default -> throw new IllegalArgumentException("Invalid priority value");
+        };
     }
 
     public int getId() { return id; }
