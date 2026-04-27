@@ -3,9 +3,11 @@ pipeline {
 
     tools {
         maven 'Maven-3.9'
+        jdk 'JDK21'
     }
 
     stages {
+
         stage('Build') {
             steps {
                 bat 'mvn clean compile'
@@ -17,5 +19,6 @@ pipeline {
                 bat 'mvn test'
             }
         }
+
     }
 }
