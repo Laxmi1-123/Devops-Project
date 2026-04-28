@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 class TaskServiceUpdateTest {
@@ -17,7 +18,7 @@ class TaskServiceUpdateTest {
 
     @BeforeEach
     void setUp() {
-
+        System.out.println("\n--- New Test Starting ---");
         taskMap = new HashMap<>();
         taskUpdate = new TaskServiceUpdate(taskMap);
 
@@ -29,7 +30,7 @@ class TaskServiceUpdateTest {
     // Test full update
     @Test
     void testUpdateTask_success() {
-
+        System.out.println("Running: testUpdateTask_success");
         Task updated = new Task(1, "Updated Task", 2);
 
         taskUpdate.updateTask(updated);
@@ -43,7 +44,7 @@ class TaskServiceUpdateTest {
     // Test update null task
     @Test
     void testUpdateTask_null() {
-
+        System.out.println("Running: testUpdateTask_null");
         assertThrows(NullPointerException.class, () -> {
             taskUpdate.updateTask(null);
         });
@@ -52,7 +53,7 @@ class TaskServiceUpdateTest {
     // Test task not found
     @Test
     void testUpdateTask_notFound() {
-
+        System.out.println("Running: testUpdateTask_notFound");
         Task updated = new Task(2, "Task", 1);
 
         assertThrows(IllegalArgumentException.class, () -> {
@@ -63,7 +64,7 @@ class TaskServiceUpdateTest {
     // Test update title
     @Test
     void testUpdateTitle_success() {
-
+        System.out.println("Running: testUpdateTitle_success");
         boolean result = taskUpdate.updateTitle(1,"New Title");
 
         assertTrue(result);
@@ -73,7 +74,7 @@ class TaskServiceUpdateTest {
     // Invalid title
     @Test
     void testUpdateTitle_invalid() {
-
+        System.out.println("Running: testUpdateTitle_invalid");
         assertThrows(IllegalArgumentException.class, () -> {
             taskUpdate.updateTitle(1,"");
         });
@@ -82,7 +83,7 @@ class TaskServiceUpdateTest {
     // Task not found
     @Test
     void testUpdateTitle_notFound() {
-
+        System.out.println("Running: testUpdateTitle_notFound");
         boolean result = taskUpdate.updateTitle(99,"Title");
 
         assertFalse(result);
@@ -90,17 +91,25 @@ class TaskServiceUpdateTest {
     // Mark done
     @Test
     void testMarkDone_success() {
-
+        System.out.println("Running: testMarkDone_success");
         boolean result = taskUpdate.markDone(1);
 
         assertTrue(result);
         assertTrue(taskMap.get(1).isDone());
     }
 
+    @RepeatedTest(3)
+    void testMarkDone_multipleTimes() {
+        System.out.println("Running repeated test: markDone");
+
+        taskUpdate.markDone(1);
+        assertTrue(taskMap.get(1).isDone());
+    }
+
     // Mark done not found
     @Test
     void testMarkDone_notFound() {
-
+        System.out.println("Running: testMarkDone_notFound");
         boolean result = taskUpdate.markDone(99);
 
         assertFalse(result);
